@@ -13,6 +13,7 @@ This Node.js module provides a simple interface to run detailed nmap scans on a 
   
 
 `npm install node-nmap-hosts`
+
 `yarn add node-nmap-hosts`
 
   
@@ -22,14 +23,18 @@ This Node.js module provides a simple interface to run detailed nmap scans on a 
   
 
 ```
-const { runNmapScan } = require('<module-name>');
-runNmapScan('192.168.1.1', [80, 443])
-	.then(hosts => {
-	console.log(hosts);
-	})
-	.catch(error => {
-		console.error(error);		
-});
+import { runNmapScan } from "./runNmap";
+import { writeFileSync } from 'fs';
+
+runNmapScan('192.168.1.1/24', [22, 80, 443, 8080])
+    .then(data => {
+        console.log("Nmap Scan Data:", data);
+
+    })
+    .catch(error => {
+        console.error("Error during Nmap Scan:", error);
+    });
+
 ```
   
 
