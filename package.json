@@ -1,5 +1,5 @@
 {
-  "name": "node-nmap",
+  "name": "node-nmap-hosts",
   "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/kacesensitive/node-nmap"
+    "url": "https://github.com/kacesensitive/node-nmap-hosts.git"
   },
   "scripts": {
     "build": "tsc",

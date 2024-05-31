@@ -1,64 +1,108 @@
-# node-osquery
 
-`node-osquery` is a module that provides a convenient interface for interacting with [OSQuery](https://osquery.io/). This allows for easy access to system data exposed by OSQuery, all within a JavaScript environment.
 
-![Badge Branches](./coverage/badge-branches.svg)
-![Badge Functions](./coverage/badge-functions.svg)
-![Badge Lines](./coverage/badge-lines.svg)
-![Badge Statements](./coverage/badge-statements.svg)
+# Node Nmap Hosts
 
-## Prerequisites
+  
 
-To use `node-osquery`, you must have [OSQuery](https://osquery.io/) installed on your system. OSQuery exposes an operating system as a high-performance relational database, and this module provides methods to interact with that data. To install OSQuery and learn more about its capabilities, please refer to the [official OSQuery documentation](https://osquery.readthedocs.io/en/stable/).
+This Node.js module provides a simple interface to run detailed nmap scans on a given IP range or specific IP and returns structured host information.
+
+  
 
 ## Installation
 
-You can install this module via npm using the following command:
+  
 
-`
-npm install --save node-osquery
-`
+`npm install node-nmap-hosts`
+`yarn add node-nmap-hosts`
 
-or using yarn:
-
-`
-yarn add node-osquery
-`
+  
 
 ## Usage
 
-You can import and use the methods provided by this package as follows:
+  
 
 ```
-const { runOSQuery } = require('node-osquery');
-// OR with ES6 import
-import { runOSQuery } from 'node-osquery';
-import { getWifiSurvey } from 'node-osquery';
-
-const main = async () => {
-const result = await runOSQuery('select * from users');
-    console.log(result);
-};
-
-main().catch(console.error);
-
-getWifiSurvey().then((data) => {
-    console.log(data);
+const { runNmapScan } = require('<module-name>');
+runNmapScan('192.168.1.1', [80, 443])
+	.then(hosts => {
+	console.log(hosts);
+	})
+	.catch(error => {
+		console.error(error);		
 });
 ```
+  
 
-## Test
+## runNmapScan
 
-To run the test suite, execute the following command:
+  
 
-`
-yarn test
-`
+`runNmapScan(target: string, ports: number[]): Promise<HostInfo[]>`
+
+  
+
+Runs a detailed nmap scan on a given IP range or specific IP and returns structured host information.
+
+  
+
+`target`: The target IP range or specific IP for the nmap scan.
+
+`ports`: Array of ports to scan.
+
+Returns a Promise that resolves with a detailed list of host information.
+
+  
+
+` HostInfo `
+
+  
+
+The HostInfo interface represents the structured information about a host.
+
+  
+
+```
+interface HostInfo { 
+	ip: string;
+	mac?: string;
+	vendor?: string;
+	hostname?: string;
+	ports: { 
+		port: number;
+		state: string;
+		serviceName?: string;
+		serviceProduct?: string;
+	}[];
+	os?: string;
+}
+```
+
+  
+
+## Dependencies
+
+This module requires nmap to be installed on the system where it's being used. You can download nmap from here: https://nmap.org/download.html.
+
+This module depends on the following packages:
+
+  
+
+`child_process`: Used to execute the nmap command.
+
+`xml2js`: Used to parse the XML output of the nmap command.
+
+  
+
+License - Apache 2.0
+
+  
 
 ## Contributing
 
-I appreciate your contributions! Please feel free to submit a pull request or open an issue on the repository.
+  
 
-## License
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-This project is licensed under the MIT License.
+  
+
+Please make sure to update tests as appropriate.
