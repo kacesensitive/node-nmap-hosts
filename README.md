@@ -23,10 +23,9 @@ This Node.js module provides a simple interface to run detailed nmap scans on a 
   
 
 ```
-import { runNmapScan } from "./runNmap";
-import { writeFileSync } from 'fs';
+import { runNmapScan } from "node-nmap-hosts";
 
-runNmapScan('192.168.1.1/24', [22, 80, 443, 8080])
+runNmapScan('192.168.1.95', [22, 80, 443, 8080])
     .then(data => {
         console.log("Nmap Scan Data:", data);
 
@@ -34,7 +33,6 @@ runNmapScan('192.168.1.1/24', [22, 80, 443, 8080])
     .catch(error => {
         console.error("Error during Nmap Scan:", error);
     });
-
 ```
   
 
